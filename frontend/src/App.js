@@ -7,16 +7,18 @@ import Login from './pages/login';
 import Register from './pages/register';
 import Select from './pages/select';
 import Run from './pages/run';
+import { useState } from 'react';
 
 function App() {
-  return (
+    const [currentId,setCurrentId] = useState('');
+    return (
           <Router>
           <Routes>
-              <Route exact path='/' element={<Home />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register/>} />
-              <Route path='/select' element={<Select />} />
-              <Route path='/run' element={<Run />} />
+              <Route exact path='/' element={<Home currentId={currentId}/>} />
+              <Route path='/login' element={<Login currentId={currentId} setCurrentId={setCurrentId}/>} />
+              <Route path='/register' element={<Register currentId={currentId} setCurrentId={setCurrentId}/>} />
+              <Route path='/select' element={<Select currentId={currentId}/>} />
+              <Route path='/run' element={<Run currentId={currentId}/>} />
           </Routes>
           </Router>
       );

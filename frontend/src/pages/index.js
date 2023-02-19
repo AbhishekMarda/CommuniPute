@@ -9,12 +9,12 @@ import Footer from './../components/Footer'
 class Banner extends React.Component{
     render(){
         return (
-        <div class="banner">
+        <div className="banner">
             <Navbar />
-            <div class="company-name">CommuniPute</div>
-            <div class="tagline">Harness the power of the world's computers in an instant. Discover the power of community computing.</div>
+            <div className="company-name">CommuniPute</div>
+            <div className="tagline">Harness the power of the world's computers in an instant. Discover the power of community computing.</div>
             <a href="login">
-                <div class="start-button">
+                <div className="start-button">
                     <p> Get Started </p>
                 </div>
             </a>
@@ -27,11 +27,11 @@ class Banner extends React.Component{
 class Navbar extends React.Component{
     render(){
         return (
-            <div class="navbar">
-            <a class="login" href="login">
+            <div className="navbar">
+            <a className="login" href="login">
                 Login
             </a>
-            <a class="register" href="register">
+            <a className="register" href="register">
                 Register
             </a>
         </div>);
@@ -40,9 +40,9 @@ class Navbar extends React.Component{
 
 class About extends React.Component{
     render(){
-        return (<div class = "about">
-                    <div class = "about-card-left" id="first-card"><img src={globe} alt="code" id="first-row-image"></img></div>
-                    <div class = "about-card-right" id="second-card">
+        return (<div className = "about">
+                    <div className = "about-card-left" id="first-card"><img src={globe} alt="code" id="first-row-image"></img></div>
+                    <div className = "about-card-right" id="second-card">
                         <h1>What is CommuniPute?</h1>
                         <p>Whether it's taking a walking the dog, taking a jog in the park, or even just getting
                             a restful night's sleep, we're not always using our computer. But when we need power,
@@ -51,7 +51,7 @@ class About extends React.Component{
                             
                         </p>   
                     </div>
-                    <div class = "about-card-left" id="third-card">
+                    <div className = "about-card-left" id="third-card">
                         <h1>How Does CommuniPute Work?</h1>
                         <p>First, a host machine lets CommuniPute know they're idle and open to work. The connection
                             is then made available on the CommuniPute site, and any user that may want to run their
@@ -60,9 +60,9 @@ class About extends React.Component{
                              compensating the host for the power they lent out. 
                         </p>
                     </div>
-                    <div class = "about-card-right" id="fourth-card"><img src={code} alt="code" id="second-row-image"></img></div>
-                    <div class = "about-card-left" id="fifth-card"><img src={coder} alt="coder" id="third-row-image"></img></div> 
-                    <div class = "about-card-right" id="sixth-card">
+                    <div className = "about-card-right" id="fourth-card"><img src={code} alt="code" id="second-row-image"></img></div>
+                    <div className = "about-card-left" id="fifth-card"><img src={coder} alt="coder" id="third-row-image"></img></div> 
+                    <div className = "about-card-right" id="sixth-card">
                         <h1>Who can use CommuniPute?</h1>
                         <p>In short, everyone! Users with weaker processors might donate their computation while
                             they sleep to supercharge (💪) the scripts they run during the day. Conversely, users
