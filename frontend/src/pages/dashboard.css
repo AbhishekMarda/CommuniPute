@@ -1,0 +1,155 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  :root {
+    --primary-color: rgb(66, 159, 252);
+    --secondary-color: rgb(29,29,29);
+    --dark-color: rgb(40, 40, 40);
+  }
+  
+  .App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    background-color: #1d1d1d;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .instance {
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid white;
+    padding: 20px;
+    width: 200px;
+    height: 350px;
+    margin: 10px 20px;
+    transition: background-color 0.3s ease-in-out;
+    position: relative; /* add position relative to the parent container */
+  }
+  
+  .instance:hover {
+    background-color: gray; /* add background color */
+    color: white; /* add text color */
+    transform: scale(1.1);
+  }
+  
+  .instance:hover * {
+    color: white; /* add text color for all nested elements */
+  }
+  
+  
+  .image-wrapper {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .instance-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .data-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: rgb(59, 136, 221);
+  }
+  
+  .instance-button {
+    margin-top: auto; /* add margin-top: auto to push the button to the bottom */
+  }
+  
+  /* add new CSS for the Select button */
+  .instance button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    margin: 10px 0 0;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .instance button:hover {
+    background-color: rgb(59, 136, 221);
+  }
+  
+  
+  .instances-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 100px;
+  }
+  
+  .App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+  }
+  

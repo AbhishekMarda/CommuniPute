@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './img/logo.png'
 import eye from './img/eye.png'
 import { useState } from 'react';
-import {ConvexProvider, ConvexReactClient} from "convex/react"
+import {useQuery} from './../convex/_generated/react';
 
 function showPassword() {
     var passwordList = document.getElementsByClassName('passwords');
@@ -16,23 +16,23 @@ function showPassword() {
     }
 }
 
-export default function Login(){
+export default function Login(props){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [clicked, setClicked] = useState(false);
 
     const handleLogin = (event) => {
         event.preventDefault();
 
-        console.log(username,password);
-    
-        // const users = useQuery("checkUser", 1);
-        // console.log("users",users);
-    
-        // redirects to run page (CHANGE TO SELECT)
-        window.location.href = '/select'
-    
+        setClicked(true);    
     }
 
+    const users = useQuery("login", username, password);
+
+    if(users != null && clicked){
+        window.location.href = '/select?client=TJHLsZgs7MF5Lwk-h8VLzw'
+    }
+    
     return (<div>
                 <div className="banner">
                     <img src={logo} alt="logo" id="login-logo-1"></img>

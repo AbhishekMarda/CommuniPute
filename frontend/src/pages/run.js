@@ -2,16 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import logo from './img/logo.png'
 import "@fontsource/source-code-pro";
-
-class Option extends React.Component{
-    render(){
-        return(<button className = "option-box" onClick={()=>{console.log("hello")}}>{this.props.value}</button>);
-    }
-}
-
+import { useMutation, useQuery } from '../convex/_generated/react';
+import { Id } from '../convex/_generated/dataModel';
 
 export default function Run(){
-    const [username, getScript] = useState('');
+    const [code, setCode] = useState("");
+    const queryParameters = new URLSearchParams(window.location.search);
+    const response = useQuery('getJobOutput', new Id('users', queryParameters.get('client')));
+    const createRequest = useMutation('requestSpecifiedAvailableCompute');
 
     function updateSelection1(){
         var versions = document.getElementsByClassName("ide-button-version");
@@ -36,7 +34,12 @@ export default function Run(){
 
     const submitRequest = (event) => {
         event.preventDefault();
-    
+        
+        const user_id = queryParameters.get("client");
+        const host_id = queryParameters.get("host");
+        createRequest(new Id('users',  host_id), new Id('users', user_id), code, "");
+        
+        // document.getElementsById("ide-output").innerHTML = response;
     }
     
 
@@ -45,7 +48,7 @@ export default function Run(){
                     <img src={logo} alt="logo" id="login-logo-1"></img>
                     <img src={logo} alt="logo" id="login-logo-2"></img>
                 </div>
-                {/* <form> */}
+                <form onSubmit={submitRequest}>
                     <div id="ide-container">
                         <h1 id="ide-title">CommuniPute IDE</h1>
                         <div id="ide-version">
@@ -54,12 +57,13 @@ export default function Run(){
                             <button className='ide-button-version' data-num = "2" data-ver="unselected" onClick={updateSelection3}>Python 3.9.2</button>
                         </div>
                         <div id="ide-input">
-                            <textarea id="editor-area"></textarea>
+                            <textarea value={code} id="editor-area" onChange={(event) => {
+                            setCode(event.target.value)}}></textarea>
                         </div>
-                        <p id="ide-output">Hello This is some output</p>
+                        <p id="ide-output">{response}</p>
                         <div id="ide-run-button"><input type="submit" name="Run" id="run-button" value="Run"></input></div>
                     </div>
-                {/* </form> */}
+                </form>
            </div>);
 };
 

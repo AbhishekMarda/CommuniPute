@@ -8,9 +8,11 @@ import Register from './pages/register';
 import Select from './pages/select';
 import Run from './pages/run';
 import { useState } from 'react';
+import { Id } from './convex/_generated/dataModel';
 
 function App() {
-    const [currentId,setCurrentId] = useState('');
+    const [currentId,setCurrentId] = useState(new Id());
+    localStorage.setItem("id", new Id());
     return (
           <Router>
           <Routes>

@@ -1,7 +1,9 @@
-import { query } from "./_generated/server";
+import { mutation } from "./_generated/server";
 
-export default query(async ({ db }, username, password) => {
-  const users = await db.query("users").collect()
-  console.log(users);
+export default mutation(async ({ db }, username, password) => {
+  const users =  await db.query("users")
+    .filter(q => q.and(q.eq(q.field("username"), username),
+        q.eq(q.field("password"), password))).unique();
+    
   return users;
 });

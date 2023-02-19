@@ -5,7 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 
 const address = process.env.REACT_APP_CONVEX_URL;
-console.log(address);
 
 const convex = new ConvexReactClient(address);
 
