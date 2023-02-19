@@ -17,7 +17,7 @@ function showPassword() {
     }
 }
 
-export default function Register(){
+export default function Register(currentId, setCurrentId){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -30,7 +30,6 @@ export default function Register(){
     const handleRegister = (event) => {
         event.preventDefault();
         
-        console.log("got here");
         // Handles Password Verification
         var error = document.getElementsByClassName("error")[0];
         error.innerHTML = "";
@@ -40,13 +39,14 @@ export default function Register(){
         }
     
         // Create User and Redirect        
-
         createUser(firstName, lastName, email, username, password);
     }
 
-    const users = useQuery("checkUser", username, password);
-    var id = users[0]._id;
-    console.log("users",id);
+    const user = useQuery("login", username, password);
+    if(user != null){
+        setCurrentId(user._id);
+        window.location.href = '/select'
+    }
 
     return (<div>
                 <div className="banner">
