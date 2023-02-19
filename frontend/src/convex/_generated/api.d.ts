@@ -17,6 +17,7 @@ import type * as getJobOutput from "../getJobOutput";
 import type * as listAvailableCompute from "../listAvailableCompute";
 import type * as login from "../login";
 import type * as makeComputeAvailable from "../makeComputeAvailable";
+import type * as markHostInUse from "../markHostInUse";
 import type * as markRequestComplete from "../markRequestComplete";
 import type * as requestSpecifiedAvailableCompute from "../requestSpecifiedAvailableCompute";
 
@@ -37,6 +38,7 @@ export type API = ApiFromModules<{
   listAvailableCompute: typeof listAvailableCompute;
   login: typeof login;
   makeComputeAvailable: typeof makeComputeAvailable;
+  markHostInUse: typeof markHostInUse;
   markRequestComplete: typeof markRequestComplete;
   requestSpecifiedAvailableCompute: typeof requestSpecifiedAvailableCompute;
 }>;

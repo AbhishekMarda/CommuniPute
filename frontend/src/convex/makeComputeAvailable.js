@@ -1,15 +1,15 @@
 import { mutation } from "./_generated/server";
 
-export default mutation(async ({ db }, host, operating_system,
+export default mutation(async ({ db }, host_id, operating_system,
     ram_available, runtime_available, cpu_arch_type, os_version_info, end_available_time) => {
     // By default, compute availability requests are false
     let in_progress_flag = false;
-    const request = { host, operating_system, ram_available, runtime_available, cpu_arch_type,
+    const request = { host_id, operating_system, ram_available, runtime_available, cpu_arch_type,
         os_version_info, end_available_time, in_progress_flag };
 
     // only one availability should exist per host
     const existing_availability = await db.query("available_compute_request")
-    .filter(q=>q.eq(q.field('host_id'), host))
+    .filter(q=>q.eq(q.field('host_id'), host_id))
     .collect()[0]
 
 
@@ -19,7 +19,7 @@ export default mutation(async ({ db }, host, operating_system,
 
     await db.insert("available_compute_request", request);
     
-    
+
 
     });
 
