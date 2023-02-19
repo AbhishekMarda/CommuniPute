@@ -86,15 +86,11 @@ def handle_request(request):
     
 # begin loop
 while True: 
-    request = client.query('listMessages', host_id)
-    print(request)
+    request = client.query('getJobForHost', host_id)
+    client.mutation('markHostInUse', host_id)
     if request != None: 
-        print(type(request['_id']))
-        print('Code', request['code'])
-        print('Requirements', request['requirements'])
-        
         output = handle_request(request)
         # Update request and mark machine back to free state
-        client.mutation('sendMessage', request['_id'], output)
+        client.mutation('markRequestComplete', request['_id'], host_id, output)
 
     time.sleep(1)
