@@ -1,12 +1,12 @@
 import { mutation } from "./_generated/server";
 import { Id } from "./_generated/dataModel";
 
-export default mutation(async ({ db }, available_compute, requesting_user, code_to_run) => {
+export default mutation(async ({ db }, host_id, client_id, code, requirements) => {
     const complete_flag = false;
-    const time_to_complete = 0;
+    console.log(requirements)
 
-    // await db.patch(available_compute, {in_progress_flag: true});
+    const response = ""
 
-    const request = { available_compute, requesting_user, code_to_run , complete_flag, time_to_complete};
-    await db.insert("take_compute_request", request);
+    const request = {client_id, code, complete_flag, host_id, requirements, response};
+    await db.insert("requests", request);
 });
