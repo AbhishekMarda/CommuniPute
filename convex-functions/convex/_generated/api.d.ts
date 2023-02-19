@@ -12,7 +12,7 @@
 import type { ApiFromModules } from "convex/api";
 import type * as createUser from "../createUser";
 import type * as getJobForHost from "../getJobForHost";
-import type * as getJobStatus from "../getJobStatus";
+import type * as getJobOutput from "../getJobOutput";
 import type * as listAvailableCompute from "../listAvailableCompute";
 import type * as login from "../login";
 import type * as makeComputeAvailable from "../makeComputeAvailable";
@@ -32,7 +32,7 @@ import type * as requestSpecifiedAvailableCompute from "../requestSpecifiedAvail
 export type API = ApiFromModules<{
   createUser: typeof createUser;
   getJobForHost: typeof getJobForHost;
-  getJobStatus: typeof getJobStatus;
+  getJobOutput: typeof getJobOutput;
   listAvailableCompute: typeof listAvailableCompute;
   login: typeof login;
   makeComputeAvailable: typeof makeComputeAvailable;
