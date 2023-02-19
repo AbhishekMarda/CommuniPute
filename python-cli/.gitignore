@@ -1,4 +1,4 @@
-./bin/*
-./include/*
-./lib/*
+bin
+include
+lib
 *.cfg
