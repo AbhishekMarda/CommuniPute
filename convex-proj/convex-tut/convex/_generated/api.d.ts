@@ -10,11 +10,11 @@
  */
 
 import type { ApiFromModules } from "convex/api";
+import type * as createUser from "../createUser";
 import type * as listAvailableCompute from "../listAvailableCompute";
-import type * as listMessages from "../listMessages";
+import type * as login from "../login";
 import type * as makeComputeAvailable from "../makeComputeAvailable";
 import type * as requestSpecifiedAvailableCompute from "../requestSpecifiedAvailableCompute";
-import type * as sendMessage from "../sendMessage";
 
 /**
  * A type describing your app's public Convex API.
@@ -26,9 +26,9 @@ import type * as sendMessage from "../sendMessage";
  * `ConvexReactClient` to create app-specific types.
  */
 export type API = ApiFromModules<{
+  createUser: typeof createUser;
   listAvailableCompute: typeof listAvailableCompute;
-  listMessages: typeof listMessages;
+  login: typeof login;
   makeComputeAvailable: typeof makeComputeAvailable;
   requestSpecifiedAvailableCompute: typeof requestSpecifiedAvailableCompute;
-  sendMessage: typeof sendMessage;
 }>;

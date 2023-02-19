@@ -26,6 +26,7 @@ export default defineSchema({
         client_user_id: s.id("users"),
         code_to_run: s.string(),
         completed_flag: s.boolean(),
-        time_to_complete_secs: s.number()
+        time_to_complete_secs: s.number(),
+        requirements_input: s.string()
     }),
 });
