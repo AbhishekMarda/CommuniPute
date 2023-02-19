@@ -86,7 +86,7 @@ def handle_request(request):
     
 # begin loop
 while True: 
-    request = client.query('query func', host_id)
+    request = client.query('listMessages', host_id)
     print(request)
     if request != None: 
         print(type(request['_id']))
@@ -95,6 +95,6 @@ while True:
         
         output = handle_request(request)
         # Update request and mark machine back to free state
-        client.mutation('patch', request['_id'], output)
+        client.mutation('sendMessage', request['_id'], output)
 
     time.sleep(1)
