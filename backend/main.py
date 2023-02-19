@@ -7,6 +7,7 @@ import time
 import docker
 import os
 import shutil
+import getpass
 
 parser = argparse.ArgumentParser(prog= "CommuniPute", description="Client to run program on your system")
 parser.add_argument('-m', '--memory', type=float, help='Amount of memory (in MB) to make available')
@@ -37,17 +38,27 @@ available_till = now + timedelta(minutes= args.available_time)
 cloud_address = "https://cheerful-oyster-672.convex.cloud" 
 client = ConvexClient(cloud_address)
 client.set_debug(True)
+
+print("Connected to convex client successfully")
+
 # Setup docker client
 docker_client = docker.from_env()
 
 # authenticate and get client id 
 def get_client_id(username, password):
     # do something with auth
-    client_id = '12345'
+    client_id = client.query('login', username, password)
     return client_id
-host_id = get_client_id("username", "passcode")
 
-# TODO: send availability information
+try: 
+    p = getpass.getpass()
+except Exception as error:
+    print('Error:', error)
+
+host_id = get_client_id(args.username, p)
+
+# send availability information
+client.mutation('makeComputeAvailable', host_id, op_system, ram, 'Python 3.10', arch, version, str(available_till))
 
 # handle receipt of function
 TEMP_FOLDER_NAME = 'temp'
@@ -75,7 +86,7 @@ def handle_request(request):
     
 # begin loop
 while True: 
-    request = client.query('listMessages', host_id)
+    request = client.query('query func', host_id)
     print(request)
     if request != None: 
         print(type(request['_id']))
@@ -83,7 +94,7 @@ while True:
         print('Requirements', request['requirements'])
         
         output = handle_request(request)
-        # code to mutate table
-        client.mutation('sendMessage', request['_id'], output)
+        # Update request and mark machine back to free state
+        client.mutation('patch', request['_id'], output)
 
     time.sleep(1)
