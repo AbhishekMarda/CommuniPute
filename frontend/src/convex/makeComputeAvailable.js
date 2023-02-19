@@ -8,11 +8,11 @@ export default mutation(async ({ db }, host_id, operating_system,
         os_version_info, end_available_time, in_progress_flag };
 
     // only one availability should exist per host
-    const existing_availability = await db.query("available_compute_request")
+    const existing_availability = (await db.query("available_compute_request")
     .filter(q=>q.eq(q.field('host_id'), host_id))
-    .collect()[0]
+    .collect())[0]
 
-
+    // return existing_availability;
     if (existing_availability != null) {
         await db.delete(existing_availability._id)
     } 

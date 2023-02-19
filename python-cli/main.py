@@ -35,7 +35,7 @@ available_till = now + timedelta(minutes= args.available_time)
     
 
 # Connect to convex
-cloud_address = "https://cheerful-oyster-672.convex.cloud" 
+cloud_address = "https://wonderful-goat-884.convex.cloud" 
 client = ConvexClient(cloud_address)
 client.set_debug(True)
 

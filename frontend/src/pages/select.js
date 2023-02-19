@@ -14,7 +14,7 @@ class Instance extends React.Component {
 
     handlePressMe(event) {
         event.preventDefault();
-        window.location.href = '/run?client=TJHLsZgs7MF5Lwk-h8VLzw&host=' + this.props.id;
+        window.location.href = '/run?client=qBNoFh8r4RIBzoktRW5Lzw&host=' + this.props.id;
     }
 
   render() {
@@ -25,10 +25,10 @@ class Instance extends React.Component {
           <img src={this.props.image} alt="instance" className="instance-image" />
         </div>
         <div className="data-fields">
-        <div>{this.props.ram}</div>
-          <div>{this.props.memory}</div>
-          <div>{this.props.version}</div>
-          <div>{this.props.architecture}</div>
+        <div>RAM: {this.props.ram}</div>
+          <div>Storage: {this.props.memory}</div>
+          <div>Version: {this.props.version}</div>
+          <div>Architecture: {this.props.architecture}</div>
         </div>
         <button onClick={this.handlePressMe}>Select</button>
       </div>
@@ -39,11 +39,11 @@ class Instance extends React.Component {
 class Navbar extends React.Component{
   render(){
       return (
-          <div class="navbar">
-          <a class="login" href="login">
+          <div className="navbar">
+          <a className="login" href="login">
               Login
           </a>
-          <a class="register" href="register">
+          <a className="register" href="register">
               Register
           </a>
       </div>);
@@ -57,7 +57,7 @@ function Dashboard(props){
       <div className="App">
         <Navbar />
         <div className="container">
-            {available_compute_resources.map(availableResource=> (<Instance id={availableResource._id.toString()} name={availableResource.operating_system} image={macos} ram = {availableResource.ram_available} memory = {"50 GB"} version = {availableResource.os_version_info} architecture = {availableResource.cpu_arch_type} dataURI="https://example.com/data1"/>))};
+            {available_compute_resources.map(availableResource=> (<li key={availableResource._id.toString()}><Instance id={availableResource.host_id.toString()} name={availableResource.operating_system} image={macos} ram = {availableResource.ram_available} memory = {"50 GB"} version = {availableResource.os_version_info} architecture = {availableResource.cpu_arch_type} dataURI="https://example.com/data1"/></li>))};
         </div>
       </div>
     );

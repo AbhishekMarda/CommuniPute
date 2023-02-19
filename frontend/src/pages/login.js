@@ -30,7 +30,7 @@ export default function Login(props){
     const users = useQuery("login", username, password);
 
     if(users != null && clicked){
-        window.location.href = '/select?client=TJHLsZgs7MF5Lwk-h8VLzw'
+        window.location.href = '/select?client=' + users._id.toString()
     }
     
     return (<div>

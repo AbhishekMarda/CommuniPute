@@ -8,8 +8,12 @@ import { Id } from '../convex/_generated/dataModel';
 export default function Run(){
     const [code, setCode] = useState("");
     const queryParameters = new URLSearchParams(window.location.search);
-    const response = useQuery('getJobOutput', new Id('users', queryParameters.get('client')));
+    const response = useQuery('getJobOutput', new Id('users', queryParameters.get("client"))) || null;
     const createRequest = useMutation('requestSpecifiedAvailableCompute');
+    var responseValue = null;
+    var completed_flag = false;
+
+    setInterval(pollResponse, 3000);
 
     function updateSelection1(){
         var versions = document.getElementsByClassName("ide-button-version");
@@ -37,11 +41,21 @@ export default function Run(){
         
         const user_id = queryParameters.get("client");
         const host_id = queryParameters.get("host");
-        createRequest(new Id('users',  host_id), new Id('users', user_id), code, "");
-        
+        console.log('Userid' + user_id);
+        console.log('Hostid' + host_id);
+        createRequest(new Id('users',  host_id), new Id('users', user_id), code, []);
         // document.getElementsById("ide-output").innerHTML = response;
     }
-    
+
+    function pollResponse() {
+        console.log(response);
+        if (response != null && response != [] && !completed_flag) {
+            console.log("Hi");
+            responseValue = response[0]['response'];
+            document.getElementById("ide-output").innerHTML = responseValue;
+            completed_flag = true;
+        }
+    }
 
     return (<div>
                 <div className = "banner">
@@ -60,7 +74,7 @@ export default function Run(){
                             <textarea value={code} id="editor-area" onChange={(event) => {
                             setCode(event.target.value)}}></textarea>
                         </div>
-                        <p id="ide-output">{response}</p>
+                        <p id="ide-output">Awaiting output...</p>
                         <div id="ide-run-button"><input type="submit" name="Run" id="run-button" value="Run"></input></div>
                     </div>
                 </form>
