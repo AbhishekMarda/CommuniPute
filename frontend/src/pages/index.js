@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './styles.css';
 import logo from './img/logo.png'
 import code from './img/code.png'
 import coder from './img/coder.webp'
 import globe from './img/globe.avif'
+import Footer from './../components/Footer'
+
 class Banner extends React.Component{
     render(){
         return (
@@ -12,7 +13,7 @@ class Banner extends React.Component{
             <Navbar />
             <div class="company-name">CommuniPute</div>
             <div class="tagline">Harness the power of the world's computers in an instant. Discover the power of community computing.</div>
-            <a href="start.html">
+            <a href="login">
                 <div class="start-button">
                     <p> Get Started </p>
                 </div>
@@ -27,10 +28,10 @@ class Navbar extends React.Component{
     render(){
         return (
             <div class="navbar">
-            <a class="login" href="login.html">
+            <a class="login" href="login">
                 Login
             </a>
-            <a class="register" href="register.html">
+            <a class="register" href="register">
                 Register
             </a>
         </div>);
@@ -73,13 +74,8 @@ class About extends React.Component{
     }
 }
 
-class Footer extends React.Component{
-    render(){
-        return (<p id="footer">CommuniPute created by Abhishek Marda, Balaji Balachandran, 
-        Mohammad Navqi, and Saad Jeelani at TreeHacks 2023. Made with  
-        <a href="https://www.convex.dev/"> Convex</a>. </p>)
-    }
-}
+const Home = () =>{
+    return (<div><Banner /><About /><Footer /></div>);
+};
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<div class = "home"><Banner /><About /><Footer /></div>);
+export default Home
